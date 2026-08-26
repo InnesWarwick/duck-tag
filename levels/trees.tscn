@@ -1,0 +1,177 @@
+[gd_scene format=4 uid="uid://bb5nw28f5pwkf"]
+
+[ext_resource type="Script" uid="uid://dklqwhpac2hnc" path="res://scripts/main.gd" id="1_physm"]
+[ext_resource type="Script" uid="uid://bckrcrka7ir82" path="res://scripts/ducks/duck.gd" id="2_7clhd"]
+[ext_resource type="Texture2D" uid="uid://sw5csy7hyr26" path="res://sprites/ducks/duck1.png" id="3_7ilwk"]
+[ext_resource type="Texture2D" uid="uid://cq63yn3nri2ud" path="res://sprites/ducks/duck2.png" id="4_80bsi"]
+[ext_resource type="Texture2D" uid="uid://dk0nbcv6ym8rs" path="res://sprites/tilemaps/treemap.png" id="5_m7edh"]
+[ext_resource type="Script" uid="uid://dnurtlo4vgoyr" path="res://scripts/maps/church/map.gd" id="6_adefp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+size = Vector2(10.999986, 14.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oug8i"]
+texture = ExtResource("5_m7edh")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.3381634, -8, 8, -8, 8, 8, 2.3381634, 8)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_eq1ho"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_oug8i")
+
+[sub_resource type="LabelSettings" id="LabelSettings_eq1ho"]
+
+[sub_resource type="SystemFont" id="SystemFont_lgpxq"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_svf5p"]
+font = SubResource("SystemFont_lgpxq")
+font_size = 7
+
+[node name="Trees" type="Node2D" unique_id=323790759]
+
+[node name="Main" type="Node2D" parent="." unique_id=93616914]
+script = ExtResource("1_physm")
+
+[node name="duck1" type="CharacterBody2D" parent="Main" unique_id=1729371755]
+position = Vector2(93, 193)
+collision_layer = 3
+collision_mask = 3
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("2_7clhd")
+up = "up p1"
+down = "down p1"
+left = "left p1"
+right = "right p1"
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/duck1" unique_id=1108320130]
+texture = ExtResource("3_7ilwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/duck1" unique_id=1305628125]
+position = Vector2(0.7999878, 0)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="duck2" type="CharacterBody2D" parent="Main" unique_id=1633540754]
+position = Vector2(297, 177)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_7clhd")
+up = "up p2"
+down = "down p2"
+left = "left p2"
+right = "right p2"
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/duck2" unique_id=1912060116]
+texture = ExtResource("4_80bsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/duck2" unique_id=395585417]
+position = Vector2(1.5258789e-05, 1)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="map" type="TileMapLayer" parent="Main" unique_id=1260415573]
+position = Vector2(-76, 92)
+tile_map_data = PackedByteArray("AAAJAAcAAAABAAEAAAAJAAYAAAAEAAEAAAAJAAUAAAABAAEAAAAaAAcAAAAEAAEAAAAaAAYAAAABAAEAAAAaAAQAAAABAAEAAAAaAAIAAAAEAAEAAAAaAAEAAAABAAEAAAAaAAAAAAADAAIAADAbAAAAAAACAAIAAAAEAAEAAAABAAEAAAAEAAAAAAAEAAEAAAAEAP//AAABAAEAAAAEAP7/AAABAAEAAAAEAP3/AAABAAEAAAAEAPz/AAABAAEAAAAEAPv/AAABAAEAAAAEAAIAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAcAAgAAAABAAEAAAAcAAcAAAABAAEAAAAcAAYAAAABAAEAAAAcAAUAAAABAAEAAAAcAAQAAAABAAEAAAAcAAIAAAABAAEAAAAcAAMAAAABAAEAAAAcAAEAAAABAAEAAAAcAAAAAAAEAAEAAAAcAP//AAABAAEAAAAcAP7/AAABAAEAAAAcAP3/AAABAAEAAAAcAPz/AAABAAEAAAAcAPv/AAABAAEAAAAcAPr/AAABAAEAAAAcAPn/AAABAAEAAAAMAAYAAAAEAAEAAAAMAAcAAAADAAEAAAANAAYAAAACAAAAAAALAAYAAAACAAAAAAAKAAYAAAACAAAAAAAOAAYAAAACAAAAAAAUAAcAAAACAAAAAAAVAAcAAAACAAAAAAAWAAcAAAACAAAAAAAXAAcAAAAEAAEAAAAXAAYAAAABAAEAAAAXAAUAAAABAAEAAAAYAAcAAAABAAEAAGAZAAcAAAABAAEAAGAUAAUAAAABAAAAADAUAAMAAAACAAAAAGATAAUAAAAFAAEAAGAUAAQAAAAEAAEAAAATAAcAAAACAAAAAAASAAcAAAACAAAAAAAPAAYAAAACAAAAAAAQAAYAAAADAAAAAAAQAAcAAAABAAIAAAARAAcAAAACAAAAAAAJAAQAAAADAAAAAAAIAAQAAAADAAAAADAIAAMAAAADAAEAAAAQAAMAAAACAAAAAAAPAAMAAAACAAAAAAAMAAMAAAACAAAAAAANAAMAAAABAAAAADANAAIAAAABAAAAAAAOAAIAAAABAAAAAFAOAAMAAAABAAAAAGAGAAAAAAABAAAAAFAFAAAAAAACAAAAAAARAAMAAAABAAAAAFAIAAIAAAABAAAAAFAGAAEAAAABAAAAAGAHAAEAAAABAAAAAFAHAAIAAAABAAAAAGARAAQAAAAEAAIAAGALAAMAAAAEAAIAAAAUAAIAAAAEAAIAAFAaAAUAAAADAAEAAAAaAAMAAAADAAEAAAAZAAIAAAABAAAAAAAZAAMAAAABAAAAADAYAAMAAAAEAAIAAAAXAAQAAAAEAAIAAFAMAAUAAAAEAAIAAFAbAAIAAAAEAAIAADAIAAYAAAAEAAIAAAAbAAcAAAAEAAIAADAEAPr/AAAEAAEAAAAEAPn/AAAEAAEAAAAEAPj/AAAEAAEAAAAEAPf/AAAEAAEAAAAEAPb/AAAEAAEAAAAcAPj/AAAEAAEAAAAcAPf/AAAEAAEAAAAcAPb/AAAEAAEAAAA=")
+tile_set = SubResource("TileSet_eq1ho")
+script = ExtResource("6_adefp")
+spawn_coords = [Vector2(6, 0), Vector2(27, -1)]
+
+[node name="Background" type="Sprite2D" parent="Main/map" unique_id=1339915836]
+z_index = -1
+position = Vector2(276, 14)
+
+[node name="Timer" type="Timer" parent="Main" unique_id=661850380]
+wait_time = 30.0
+one_shot = true
+
+[node name="Label" type="Label" parent="Main/Timer" unique_id=424672882]
+offset_left = 181.0
+offset_top = 14.0
+offset_right = 221.0
+offset_bottom = 37.0
+label_settings = SubResource("LabelSettings_eq1ho")
+
+[node name="duck1_ui" type="Control" parent="Main" unique_id=239327732]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="duck1_score" type="Label" parent="Main/duck1_ui" unique_id=1645045979]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 12.0
+offset_right = 82.0
+offset_bottom = 35.0
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/duck1_ui" unique_id=1615735338]
+position = Vector2(31, 23)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("3_7ilwk")
+
+[node name="duck_1_is_it" type="Label" parent="Main/duck1_ui" unique_id=779201553]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 34.0
+text = "it"
+label_settings = SubResource("LabelSettings_svf5p")
+
+[node name="duck2_ui" type="Control" parent="Main" unique_id=1582863128]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(318.685, 0)
+
+[node name="duck2_score" type="Label" parent="Main/duck2_ui" unique_id=1099104977]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 12.0
+offset_right = 82.0
+offset_bottom = 35.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-18.015, 0)
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/duck2_ui" unique_id=1123756222]
+position = Vector2(31, 23)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("4_80bsi")
+offset = Vector2(9.04, 0)
+
+[node name="duck_2_is_it" type="Label" parent="Main/duck2_ui" unique_id=1801133974]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 34.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(9.515, 0)
+text = "it"
+label_settings = SubResource("LabelSettings_svf5p")
+
+[connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
