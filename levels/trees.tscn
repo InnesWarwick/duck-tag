@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cq63yn3nri2ud" path="res://sprites/ducks/duck2.png" id="4_80bsi"]
 [ext_resource type="Texture2D" uid="uid://dk0nbcv6ym8rs" path="res://sprites/tilemaps/treemap.png" id="5_m7edh"]
 [ext_resource type="Script" uid="uid://dnurtlo4vgoyr" path="res://scripts/maps/church/map.gd" id="6_adefp"]
+[ext_resource type="Texture2D" uid="uid://d0lk0m7uxkm47" path="res://sprites/background/tree background.png" id="7_physm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(10.999986, 14.5)
@@ -48,6 +49,12 @@ subpixel_positioning = 0
 font = SubResource("SystemFont_lgpxq")
 font_size = 7
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7fb0l"]
+polygon = PackedVector2Array(56.594666, -46.658905, 126.27183, -90.179985, 159.59439, -70.72218, 125.44739, -35.11345, 59.007607, -14.970108)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_physm"]
+polygon = PackedVector2Array(56.594666, -46.658905, 86.549904, -60.647476, 98.00172, -39.555862, 83.61448, -28.330551, 59.007607, -14.970108)
+
 [node name="Trees" type="Node2D" unique_id=323790759]
 
 [node name="Main" type="Node2D" parent="." unique_id=93616914]
@@ -72,6 +79,10 @@ texture = ExtResource("3_7ilwk")
 position = Vector2(0.7999878, 0)
 shape = SubResource("RectangleShape2D_0e48y")
 
+[node name="JumpTimer" type="Timer" parent="Main/duck1" unique_id=1101274235]
+wait_time = 0.15
+autostart = true
+
 [node name="duck2" type="CharacterBody2D" parent="Main" unique_id=1633540754]
 position = Vector2(284.68, 177)
 collision_layer = 3
@@ -89,12 +100,17 @@ texture = ExtResource("4_80bsi")
 position = Vector2(1.5258789e-05, 1)
 shape = SubResource("RectangleShape2D_0e48y")
 
+[node name="JumpTimer" type="Timer" parent="Main/duck2" unique_id=159900904]
+wait_time = 0.15
+autostart = true
+
 [node name="map" type="TileMapLayer" parent="Main" unique_id=1260415573]
+light_mask = 3
 position = Vector2(-76, 92)
 tile_map_data = PackedByteArray("AAAJAAcAAAABAAEAAAAJAAYAAAAEAAEAAAAJAAUAAAABAAEAAAAaAAcAAAAEAAEAAAAaAAYAAAABAAEAAAAaAAQAAAABAAEAAAAaAAIAAAAEAAEAAAAaAAEAAAABAAEAAAAaAAAAAAADAAIAADAbAAAAAAACAAIAAAAEAAEAAAABAAEAAAAEAAAAAAAEAAEAAAAEAP//AAABAAEAAAAEAP7/AAABAAEAAAAEAP3/AAAEAAEAAAAEAPz/AAAEAAEAAAAEAPv/AAABAAEAAAAEAAIAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAcAAgAAAABAAEAAAAcAAcAAAABAAEAAAAcAAYAAAABAAEAAAAcAAUAAAABAAEAAAAcAAQAAAABAAEAAAAcAAIAAAABAAEAAAAcAAMAAAABAAEAAAAcAAEAAAABAAEAAAAcAAAAAAAEAAEAAAAcAP//AAABAAEAAAAcAP7/AAABAAEAAAAcAP3/AAABAAEAAAAcAPz/AAABAAEAAAAcAPv/AAABAAEAAAAcAPr/AAABAAEAAAAcAPn/AAABAAEAAAAMAAYAAAAEAAEAAAAMAAcAAAADAAEAAAANAAYAAAACAAAAAAALAAYAAAACAAAAAAAKAAYAAAACAAAAAAAOAAYAAAACAAAAAAAUAAcAAAACAAAAAAAVAAcAAAACAAAAAAAWAAcAAAACAAAAAAAXAAcAAAAEAAEAAAAXAAYAAAABAAEAAAAXAAUAAAABAAEAAAAYAAcAAAABAAEAAGAZAAcAAAABAAEAAGAUAAUAAAABAAAAADAUAAMAAAACAAAAAGATAAUAAAAFAAEAAGAUAAQAAAAEAAEAAAATAAcAAAACAAAAAAASAAcAAAACAAAAAAAPAAYAAAACAAAAAAAQAAYAAAADAAAAAAAQAAcAAAABAAIAAAARAAcAAAACAAAAAAAJAAQAAAADAAAAAAAIAAQAAAADAAAAADAIAAMAAAADAAEAAAAQAAMAAAACAAAAAAAPAAMAAAACAAAAAAAMAAMAAAACAAAAAAANAAMAAAABAAAAADANAAIAAAABAAAAAAAOAAIAAAABAAAAAFAOAAMAAAABAAAAAGAGAAAAAAABAAAAAFAFAAAAAAACAAAAAAARAAMAAAABAAAAAFAIAAIAAAABAAAAAFAGAAEAAAABAAAAAGAHAAEAAAABAAAAAFAHAAIAAAABAAAAAGARAAQAAAAEAAIAAGALAAMAAAAEAAIAAAAUAAIAAAAEAAIAAFAaAAUAAAADAAEAAAAaAAMAAAADAAEAAAAZAAIAAAABAAAAAAAZAAMAAAABAAAAADAYAAMAAAAEAAIAAAAXAAQAAAAEAAIAAFAMAAUAAAAEAAIAAFAbAAIAAAAEAAIAADAIAAYAAAAEAAIAAAAbAAcAAAAEAAIAADAEAPr/AAAEAAEAAAAEAPn/AAAEAAEAAAAEAPj/AAAEAAEAAAAEAPf/AAAEAAEAAAAEAPb/AAAEAAEAAAAcAPj/AAAEAAEAAAAcAPf/AAAEAAEAAAAcAPb/AAAEAAEAAAARAAEAAAAFAAEAADARAAAAAAAEAAIAAFAOAAAAAAAFAAEAADAOAP//AAAEAAIAAFALAP//AAAFAAEAADALAP7/AAAEAAIAAFAFAP3/AAACAAAAAAAGAP3/AAADAAAAAAAGAP7/AAAEAAIAAGA=")
 tile_set = SubResource("TileSet_eq1ho")
 script = ExtResource("6_adefp")
-spawn_coords = [Vector2(6, 0), Vector2(27, -1)]
+spawn_coords = [Vector2(6, -1), Vector2(27, -1)]
 
 [node name="Background" type="Sprite2D" parent="Main/map" unique_id=1339915836]
 z_index = -1
@@ -173,5 +189,31 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(9.515, 0)
 text = "it"
 label_settings = SubResource("LabelSettings_svf5p")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=429745294]
+rotation = 0.49741888
+scale = Vector2(0.99999994, 0.99999994)
+color = Color(1, 0.57254905, 0.19607843, 0.81960785)
+energy = 0.85
+shadow_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1976042268]
+position = Vector2(306.00003, -74)
+rotation = 0.49741888
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_7fb0l")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="." unique_id=1381588858]
+position = Vector2(-5.9999847, -52.00001)
+rotation = 0.49741888
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_physm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1666238913]
+light_mask = 0
+z_index = -25
+position = Vector2(196.00002, 110.00001)
+scale = Vector2(1.0601852, 1.0601852)
+texture = ExtResource("7_physm")
 
 [connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]

@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 125.0
 const JUMP_VELOCITY = -215
 const ACCELERATION = 30
+const WALL_PUSHBACK = 100
 var is_caught = false
 var is_immune = false
 @export var up : String
@@ -23,24 +24,39 @@ func _physics_process(delta: float) -> void:
 			if collider.collision_layer and is_caught == false:
 				is_caught = true
 
-
+	#falling states
 	if not is_on_floor():
 		if Input.is_action_pressed(up) and velocity.y > 0:
 			velocity += (get_gravity() * delta) / 3
 		else:
 			velocity += get_gravity() * delta
 
+	#jump
 	if Input.is_action_just_pressed(up) and is_on_floor():
 		velocity.y = move_toward(JUMP_VELOCITY, 0, JUMP_VELOCITY / 4)
-
+	
+	#walljump
+	if Input.is_action_just_pressed(up):
+		if is_on_wall_only() and Input.is_action_pressed(right) and not is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			velocity.x -= WALL_PUSHBACK
+		if is_on_wall_only() and Input.is_action_pressed(left) and not is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			velocity.x += WALL_PUSHBACK
+		
 	var direction := Input.get_axis(left, right)
+	
+	#sprite flip
 	if direction:
 		var target_speed = direction * SPEED
 		velocity.x = move_toward(velocity.x, target_speed, ACCELERATION)
 		$Sprite2D.flip_h = (direction < 0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, ACCELERATION)
+
 	move_and_slide()
+	
+	
 	
 func reset_duck(new_position: Vector2):
 	position = new_position

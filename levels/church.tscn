@@ -51,6 +51,15 @@ sources/0 = SubResource("TileSetAtlasSource_0hol4")
 font = SubResource("SystemFont_lgpxq")
 font_size = 7
 
+[sub_resource type="Gradient" id="Gradient_c2t21"]
+offsets = PackedFloat32Array(0.12048193, 0.6987952)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3py2b"]
+gradient = SubResource("Gradient_c2t21")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Main" type="Node2D" unique_id=93616914]
 script = ExtResource("1_rj586")
 
@@ -175,5 +184,71 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(9.515, 0)
 text = "it"
 label_settings = SubResource("LabelSettings_svf5p")
+
+[node name="Lights" type="Node2D" parent="." unique_id=1976680969]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=1923809099]
+position = Vector2(144.99998, 131)
+scale = Vector2(1.2265624, 1.2109374)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=1512513815]
+position = Vector2(29.000038, 131)
+scale = Vector2(1.5044553, 1.4663694)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights" unique_id=182067078]
+position = Vector2(48.000008, 81.999954)
+scale = Vector2(1.8453083, 1.7756815)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights" unique_id=160482025]
+position = Vector2(231, 164)
+scale = Vector2(2.2633858, 2.150239)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lights" unique_id=979566514]
+position = Vector2(255.99998, 130)
+scale = Vector2(2.2633858, 2.150239)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lights" unique_id=1353689796]
+position = Vector2(313, 129)
+scale = Vector2(2.2633858, 2.150239)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Lights" unique_id=629439016]
+position = Vector2(365, 84)
+scale = Vector2(2.2633858, 2.150239)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
+
+[node name="PointLight2D8" type="PointLight2D" parent="Lights" unique_id=928802437]
+position = Vector2(166, 68)
+scale = Vector2(2.2633858, 2.150239)
+color = Color(1, 0.48235294, 0.11764706, 1)
+energy = 2.19
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3py2b")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
